@@ -1,4 +1,3 @@
-
 function loadrequest(){
    
     let fnamein = document.getElementById("fnamein").value;
@@ -28,11 +27,12 @@ function loadrequest(){
              alert("Password does not match");
         }
         
-        if(yearin!=0 && yearin!=50){
-            alert("Year has to a number between o and 50");
+        if(!(yearin>=0 && yearin<=50)){
+            alert("Year has to a number between 0 and 50");
         }
         if(!emailin.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) || emailin==""){
-             document.getElementById("email").style.color="red";
+             alert("Incorrect formart for email");
+            document.getElementById("email").style.color="red";
         }
     else{
                 document.getElementById("email").style.color="black";

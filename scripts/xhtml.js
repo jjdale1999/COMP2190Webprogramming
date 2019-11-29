@@ -1,5 +1,6 @@
 function loadrequest(){
-   
+    
+    console.log('IM HERE BITCHESSSSSSSSSS');
     let fnamein = document.getElementById("fnamein").value;
     let lnamein = document.getElementById("lnamein").value;
     let constiin = document.getElementById("constiin").value; 
@@ -9,60 +10,95 @@ function loadrequest(){
     let conpwordin = document.getElementById("conpwordin").value;
    
     function styleblack(idname){
-        document.getElementById(idname).style.color="black";
-    }
-    function stylered(idname){
-        document.getElementById(idname).style.color="red";
-    }
-    function checkmail(email){
-        var test=email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
-       return (test) ? true : false;
+        if(typeof(idname)=== typeof(0)){
+            document.getElementsByClassName("inputs")[idname].style.borderColor="#ccc";
+        }else{
+            document.getElementById(idname).style.borderColor="#ccc";
+        }
+        
     }
     
-    function checkpassword(pword,confipword){
+    function stylered(idname)
+    {
+        if(typeof(idname)=== typeof(0))
+        {
+            document.getElementsByClassName("inputs")[idname].style.borderColor="red";
+        }
+        else
+        {
+            document.getElementById(idname).style.borderColor="red";
+        }
+    }
+    
+    function checkmail(email)
+    {
+        var test=email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+        return (test) ? true : false;
+    }
+    
+    function checkpassword(pword,confipword)
+    {
          return (pword===confipword) ? true : false;
     }
     
     var i;
     
     
-    if(checkpassword(pwordin,conpwordin)==false)  {
-            stylered("password");
-            stylered("conpword");
-            
-             alert("Password does not match");
-        }else{
-            styleblack("password");
-            styleblack("conpword");
-        }
-     if(!(yearin>=0 && yearin<=50)){
-            alert("Year has to a number between 0 and 50");
-            stylered("year");
-        }else{
-            styleblack("year");
-        }
-        if(checkmail(emailin)==false || emailin==""){
-             alert("Incorrect formart for email");
-            stylered("email");
-        }
-    else{
-               styleblack("email");
-            }
-             
-        if(!/^[\d]/.test(yearin)){
-            stylered("year");
+    if(checkpassword(pwordin,conpwordin)==false)  
+    {
+        stylered("password");
+        stylered("conpword");
 
-        }else{
-            styleblack("year");
-        }
-     for(i=0;i<document.getElementsByClassName("inputs").length;i++){
+        alert("Password does not match");
+    }
+    else
+    {
+        styleblack("password");
+        styleblack("conpword");
+        
+    }
+    if(!(yearin>=0 && yearin<=50))
+    {
+        alert("Year has to a number between 0 and 50");
+        stylered("year");
+    } 
+    else 
+    {
+        styleblack("year");
+    }
+        
+    if(checkmail(emailin)==false || emailin=="")
+    {
+        alert("Incorrect formart for email");
+        stylered("email");
+    }
+    else
+    {
+        styleblack("email");
+    }
+             
+    if(!/^[\d]/.test(yearin))
+    {
+        stylered("year");
+
+    }
+    else
+    {
+        styleblack("year");
+    }
+     
+    for(i=0;i<document.getElementsByClassName("inputs").length;i++)
+    {
          
-        var idname = document.getElementsByTagName("label")[i].id;
-    console.log(idname);
-      var y=  document.getElementsByTagName("input")[i].value;
-        if(y==""){
+        var idname =i;
+        console.log(idname);
+        var y=  document.getElementsByTagName("input")[i].value;
+        if(y=="")
+        {
             stylered(idname);
-        }else{
+        }
+        else
+        {
             styleblack(idname);
         }
     
@@ -72,13 +108,17 @@ function loadrequest(){
     {
         
 
-        for(i=0;i<document.getElementsByTagName("label").length-2;i++){
-        var idname = document.getElementsByTagName("label")[i].id;
+        for(i=0;i<document.getElementsByClassName("inputs").length-2;i++)
+        {
+            var idname = i;
             styleblack(idname);
         }
-                alert("Validation Completed");
+        alert("Validation Completed");
+        return true;
+                
     }
     
+    return false;
   
    
      

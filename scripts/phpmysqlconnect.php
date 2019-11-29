@@ -5,7 +5,6 @@ require_once 'dbconfig.php';
 try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     echo "Connected to $dbname at $host successfully.";
-    $conn = null;
     
     
 if(isset($_POST)){
@@ -16,25 +15,20 @@ if(isset($_POST)){
     $year = test_input($_POST['yearin']);
     $pword = test_input(test_input($_POST['pwordin']));
     $conpword = test_input($_POST['conpwordin']);
-$salt = mt_rand();
+    $salt = mt_rand();
     $password_digest = md5($salt.$password);
+    echo $fname;
+    if(everything is okay then ){
+          $insertData="INSERT INTO Representatives (first_name, last_name, constituency, email,
+yrs_service, salt, password_digest) 
+ VALUES ('$fname', '$lname', '$consti','$email', '$year','$salt', '$password_digest')";
+   
+   $stmt = $conn->query($insertData);
+    }
+ 
 
-    
-                    
-
-                        
-                        
-    $insertData="INSERT INTO Representatives (first_name, last_name, constituency, email,
- yrs_service, salt, password_digest) 
-  VALUES ('$fname', '$lname', '$consti','$email', '$year','$salt', '$password_digest')";
-    
-    $stmt = $connect->query($insertData);
-
-
-    
-
-    $stmt = $connect->query("SELECT * FROM Users");
-    $results = $stmt ->fetchALL(PDO ::FETCH_ASSOC);
+   $stmt = $conn->query("SELECT * FROM Representatives");
+   $results = $stmt ->fetchALL(PDO ::FETCH_ASSOC);
 
    
 		
@@ -58,18 +52,18 @@ function fieldisempty($var){
   return  ($var === "" ? true : false);
 }
 
-?>
-
-
-    
+?>    
     <div id="contents">
     <table>
                     <th> First Name</th>
                     <th> Last Name</th>
                     <th> Constituency</th>
-                    <th id="emailhead" > Email </th>
-                    <th class="hash"> Hash</th>
-                    <th class="yearofser">Years of Service</th>
+                    <th> Email </th>
+                    <th>Years of Service</th>
+                    <th> Password Digiest</th>
+                    <th> Salt</th>
+                    <th> ID</th>
+
         <?php foreach ($results as $row): ?>
                 <tr>
                     <td><?= $row['first_name']; ?></td>
@@ -79,7 +73,9 @@ function fieldisempty($var){
                     <td><?=$row['yrs_service']; ?></td>
                     <td><?=$row['password_digest']; ?></td>
                     <td><?=$row['salt']; ?></td>
+                    <td><?=$row['id']; ?></td>
                 </tr>
+
             <?php endforeach; ?>
         
     </table>

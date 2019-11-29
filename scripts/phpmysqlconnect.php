@@ -13,42 +13,44 @@ if(isset($_POST)){
     $consti = test_input($_POST['constiin']);    
     $email = test_input($_POST['emailin']);
     $year = test_input($_POST['yearin']);
-    $pword = test_input(test_input($_POST['pwordin']));
-    $conpword = test_input($_POST['conpwordin']);
     $salt = mt_rand();
-    $password_digest = md5($salt.$password);
-    echo $fname;
-    if(0===0 ){
+    $password_digest=md5($_POST['pwordin'].$salt);
+    
+    if((fieldisnotempty($fname)) && (validinput($fname)) && (fieldisnotempty($lname)) && (validinput($lname)) && (fieldisnotempty($consti)) && (validinput($consti)) &&(fieldisnotempty($email)) && (test_input($_POST['pwordin'])===test_input($_POST['conpwordin'])) && (checkmail($email)) ){
           $insertData="INSERT INTO Representatives (first_name, last_name, constituency, email,
 yrs_service, salt, password_digest) 
  VALUES ('$fname', '$lname', '$consti','$email', '$year','$salt', '$password_digest')";
-   
+   echo"testing";
    $stmt = $conn->query($insertData);
-    }else{
-        if(fieldisempty($fname)===false){
-            echo"fname field is empty";
-        }
-        if(fieldisempty($lname)===false){
-            echo"fname field is empty";
-        }
+    }
+       
+
 
     }
  
 
    $stmt = $conn->query("SELECT * FROM Representatives");
    $results = $stmt ->fetchALL(PDO ::FETCH_ASSOC);
+    
 
    
 		
     
-}
+
 } catch (PDOException $pe) {
     die("Could not connect to the database $dbname :" . $pe->getMessage());
 }
 
                         
-
-
+function validinput($value){
+    $test = preg_match("/^[A-Za-z- ]+$/", $value);
+        return ($test) ? true : false;
+}
+function checkmail($email)
+    {
+        $test = preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", $email);
+        return ($test) ? true : false;
+    }
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -56,21 +58,28 @@ function test_input($data) {
     return $data;
 }
 
-function fieldisempty($var){
-  return  ($var === "" ? true : false);
+function fieldisnotempty($var){
+  if($var == "")
+  {
+    return false;
+  } 
+  else 
+  {
+    return true;
+  }
 }
 
 ?>    
-    <div id="contents">
+   
     <table>
                     <th> First Name</th>
                     <th> Last Name</th>
                     <th> Constituency</th>
                     <th> Email </th>
+                    <th> Hash</th>
                     <th>Years of Service</th>
-                    <th> Password Digiest</th>
-                    <th> Salt</th>
-                    <th> ID</th>
+                    
+                    
 
         <?php foreach ($results as $row): ?>
                 <tr>
@@ -78,17 +87,16 @@ function fieldisempty($var){
                     <td><?= $row['last_name']; ?></td>
                     <td><?=$row['constituency']; ?></td>
                     <td><?=$row['email']; ?></td>
-                    <td><?=$row['yrs_service']; ?></td>
                     <td><?=$row['password_digest']; ?></td>
-                    <td><?=$row['salt']; ?></td>
-                    <td><?=$row['id']; ?></td>
+                    <td><?=$row['yrs_service']; ?></td>
+                   
                 </tr>
 
             <?php endforeach; ?>
         
     </table>
                     
-<div>
+
     
  
 

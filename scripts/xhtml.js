@@ -1,6 +1,5 @@
 function loadrequest(){
     
-    console.log('IM HERE BITCHESSSSSSSSSS');
     let fnamein = document.getElementById("fnamein").value;
     let lnamein = document.getElementById("lnamein").value;
     let constiin = document.getElementById("constiin").value; 
@@ -68,9 +67,9 @@ function loadrequest(){
     }
         
     if(checkmail(emailin)==false || emailin=="")
-    {
+    {stylered("email");
         alert("Incorrect formart for email");
-        stylered("email");
+        
     }
     else
     {

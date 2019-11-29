@@ -19,6 +19,10 @@ function loadrequest(){
        return (test) ? true : false;
     }
     
+    function checkpassword(pword,confipword){
+         return (pword===confipword) ? true : false;
+    }
+    
     
      for(i=0;i<document.getElementsByTagName("input").length-2;i++){
         var idname = document.getElementsByTagName("label")[i].id;
@@ -32,22 +36,26 @@ function loadrequest(){
     
     }
     
-    if(fnamein!="" && lnamein!=""  && constiin!="" && emailin!=""  && yearin!="" && pwordin!="" && conpwordin!="" && checkmail(emailin)==true && (pwordin == conpwordin) && (yearin>=0 && yearin<=50))
+    if(fnamein!="" && lnamein!=""  && constiin!="" && emailin!=""  && yearin!="" && pwordin!="" && conpwordin!="" && checkmail(emailin)==true && checkpassword(pwordin,conpwordin)==true && (yearin>=0 && yearin<=50))
     {
         
-        document.getElementById("fname").style.color="black";
-        document.getElementById("lname").style.color="black";
-        document.getElementById("consti").style.color="black";
-        document.getElementById("email").style.color="black";
-        document.getElementById("year").style.color="black";
-        document.getElementById("password").style.color="black";
-        document.getElementById("conpword").style.color="black";
-//        add class instead of using style.color
-        alert("Validation Completed");
-  
+
+        for(i=0;i<document.getElementsByTagName("label").length-2;i++){
+        var idname = document.getElementsByTagName("label")[i].id;
+            styleblack(idname);
+        }
+                alert("Validation Completed");
+
+    
     }
+    
+  
+    
     else{
-        if(pwordin != conpwordin)  {
+        if(checkpassword(pwordin,conpwordin)==false)  {
+            stylered("password");
+            stylered("conpword");
+            
              alert("Password does not match");
         }
         
@@ -56,7 +64,8 @@ function loadrequest(){
         }
         if(checkmail(emailin)==false || emailin==""){
              alert("Incorrect formart for email");
-            document.getElementById("email").style.color="red";
+//            document.getElementById("email").style.color="red";
+            stylered("email");
         }
     else{
                styleblack("email");

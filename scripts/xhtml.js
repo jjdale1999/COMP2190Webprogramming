@@ -55,10 +55,16 @@ function loadrequest(){
             stylered("conpword");
             
              alert("Password does not match");
+        }else{
+            styleblack("password");
+            styleblack("conpword");
         }
         
         if(!(yearin>=0 && yearin<=50)){
             alert("Year has to a number between 0 and 50");
+            stylered("year");
+        }else{
+            styleblack("year");
         }
         if(checkmail(emailin)==false || emailin==""){
              alert("Incorrect formart for email");

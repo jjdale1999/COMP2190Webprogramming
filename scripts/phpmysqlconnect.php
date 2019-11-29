@@ -18,12 +18,20 @@ if(isset($_POST)){
     $salt = mt_rand();
     $password_digest = md5($salt.$password);
     echo $fname;
-    if(everything is okay then ){
+    if(0===0 ){
           $insertData="INSERT INTO Representatives (first_name, last_name, constituency, email,
 yrs_service, salt, password_digest) 
  VALUES ('$fname', '$lname', '$consti','$email', '$year','$salt', '$password_digest')";
    
    $stmt = $conn->query($insertData);
+    }else{
+        if(fieldisempty($fname)===false){
+            echo"fname field is empty";
+        }
+        if(fieldisempty($lname)===false){
+            echo"fname field is empty";
+        }
+
     }
  
 

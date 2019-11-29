@@ -23,7 +23,7 @@ function loadrequest(){
          return (pword===confipword) ? true : false;
     }
     
-    
+    var i;
      for(i=0;i<document.getElementsByTagName("input").length-2;i++){
         var idname = document.getElementsByTagName("label")[i].id;
     
@@ -45,8 +45,6 @@ function loadrequest(){
             styleblack(idname);
         }
                 alert("Validation Completed");
-
-    
     }
     
   
@@ -64,7 +62,6 @@ function loadrequest(){
         }
         if(checkmail(emailin)==false || emailin==""){
              alert("Incorrect formart for email");
-//            document.getElementById("email").style.color="red";
             stylered("email");
         }
     else{
@@ -72,13 +69,13 @@ function loadrequest(){
             }
              
         if(!/^[\d]/.test(yearin)){
-            document.getElementById("year").style.color="red";
-//            alert("u need a digit");
+            stylered("year");
+
         }else{
-            document.getElementById("year").style.color="black";
+            styleblack("year");
         }
         
-         var i;
+         
    
 
     }

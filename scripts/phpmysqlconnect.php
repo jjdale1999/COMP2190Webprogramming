@@ -14,13 +14,11 @@ if(isset($_POST)){
     $consti = test_input($_POST['constiin']);    
     $email = test_input($_POST['emailin']);
     $year = test_input($_POST['yearin']);
-    $pword = test_input(test_input($_POST['pwordin']);
+    $pword = test_input(test_input($_POST['pwordin']));
     $conpword = test_input($_POST['conpwordin']);
 $salt = mt_rand();
     $password_digest = md5($salt.$password);
-                        
-                        //need to validate
-    (fieldisempty($fname) === "" ? echo "it is empty" : echo "it is not empty");
+
     
                     
 
@@ -62,34 +60,35 @@ function fieldisempty($var){
 
 ?>
 
-<?php
-$start= '<div id="contents">
+
+    
+    <div id="contents">
     <table>
                     <th> First Name</th>
                     <th> Last Name</th>
                     <th> Constituency</th>
                     <th id="emailhead" > Email </th>
                     <th class="hash"> Hash</th>
-                    <th class="yearofser">Years of Service</th>';
-       foreach ($results as $row){
-            $start.='<tr>
-                    <td>'. $row['first_name'].'</td>
-                    <td>'.$row['last_name'].'</td>
-                    <td>'.$row['constituency'].'</td>
-                    <td>'.$row['email'].'</td>
-                    <td>'.$row['yrs_service'].'</td>
-                    <td>'.$row['password_digest'].'</td>
-                    <td>'.$row['salt'].'</td>
-                </tr>';
-           
-       }
-               
+                    <th class="yearofser">Years of Service</th>
+        <?php foreach ($results as $row): ?>
+                <tr>
+                    <td><?= $row['first_name']; ?></td>
+                    <td><?= $row['last_name']; ?></td>
+                    <td><?=$row['constituency']; ?></td>
+                    <td><?=$row['email']; ?></td>
+                    <td><?=$row['yrs_service']; ?></td>
+                    <td><?=$row['password_digest']; ?></td>
+                    <td><?=$row['salt']; ?></td>
+                </tr>
+            <?php endforeach; ?>
         
-    $start.='</table>
+    </table>
                     
-<div>';
-                        echo $start;
-?>
+<div>
+    
+ 
+
+
 
 
 

@@ -20,7 +20,6 @@ if(isset($_POST)){
           $insertData="INSERT INTO Representatives (first_name, last_name, constituency, email,
 yrs_service, salt, password_digest) 
  VALUES ('$fname', '$lname', '$consti','$email', '$year','$salt', '$password_digest')";
-   echo"testing";
    $stmt = $conn->query($insertData);
     }
        
@@ -43,7 +42,7 @@ yrs_service, salt, password_digest)
 
                         
 function validinput($value){
-    $test = preg_match("/^[A-Za-z- ]+$/", $value);
+    $test = preg_match("/^[A-Za-z-. ]+$/", $value);
         return ($test) ? true : false;
 }
 function checkmail($email)

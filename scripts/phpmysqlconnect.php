@@ -18,6 +18,8 @@ if(isset($_POST)){
     $conpword = test_input($_POST['conpwordin']);
 $salt = mt_rand();
     $password_digest = md5($salt.$password);
+                        
+                        //need to validate
     (fieldisempty($fname) === "" ? echo "it is empty" : echo "it is not empty");
     
                     
@@ -60,31 +62,34 @@ function fieldisempty($var){
 
 ?>
 
-
-<div id="contents">
+<?php
+$start= '<div id="contents">
     <table>
                     <th> First Name</th>
                     <th> Last Name</th>
                     <th> Constituency</th>
                     <th id="emailhead" > Email </th>
                     <th class="hash"> Hash</th>
-                    <th class="yearofser">Years of Service</th>
-        <?php foreach ($results as $row): ?>
-                <tr>
-                    <td><?= $row['first_name']; ?></td>
-                    <td><?= $row['last_name']; ?></td>
-                    <td><?=$row['constituency']; ?></td>
-                    <td><?=$row['email']; ?></td>
-                    <td><?=$row['yrs_service']; ?></td>
-                    <td><?=$row['password_digest']; ?></td>
-                    <td><?=$row['salt']; ?></td>
-                </tr>
-            <?php endforeach; ?>
+                    <th class="yearofser">Years of Service</th>';
+       foreach ($results as $row){
+            $start.='<tr>
+                    <td>'. $row['first_name'].'</td>
+                    <td>'.$row['last_name'].'</td>
+                    <td>'.$row['constituency'].'</td>
+                    <td>'.$row['email'].'</td>
+                    <td>'.$row['yrs_service'].'</td>
+                    <td>'.$row['password_digest'].'</td>
+                    <td>'.$row['salt'].'</td>
+                </tr>';
+           
+       }
+               
         
-    </table>
+    $start.='</table>
                     
-<div>
-
+<div>';
+                        echo $start;
+?>
 
 
 

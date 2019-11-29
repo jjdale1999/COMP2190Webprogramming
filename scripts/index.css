@@ -1,0 +1,45 @@
+body{
+font-family: Tahoma;
+font-size: 13px;
+}
+table{
+    width:100%;
+    border-spacing: 0px;
+
+    border-collapse: collapse;
+}
+
+th{
+    background-color: #687290;
+    color: white;
+    text-align: left;
+}
+#emailhead{
+    text-align: center;
+}
+.email{
+    text-align: center;
+}
+.email:hover{
+    color: #cc6600;
+}
+.hash{
+    text-align: center;
+}
+td{
+    white-space: 1px;
+}
+table tr{
+    background-color: #eeeff4;
+}
+table tr:nth-child(even) {
+  background: #dfe1e8;
+}
+#total{
+    display: none;
+    font-weight: bold;
+}
+
+.yearofser{
+    text-align: center;
+}

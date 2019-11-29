@@ -69,31 +69,37 @@ function fieldisnotempty($var){
 }
 
 ?>    
-   
+   <html>
+      <head>
+          <link href="../styles/p1a.css" type="text/css" rel="stylesheet"/>
+
+      </head>
     <table>
+                    
                     <th> First Name</th>
                     <th> Last Name</th>
                     <th> Constituency</th>
-                    <th> Email </th>
-                    <th> Hash</th>
-                    <th>Years of Service</th>
-                    
+                    <th id="emailhead" > Email </th>
+                    <th class="hash"> Hash</th>
+                    <th class="yearofser">Years of Service</th>
                     
 
         <?php foreach ($results as $row): ?>
                 <tr>
+                  
                     <td><?= $row['first_name']; ?></td>
                     <td><?= $row['last_name']; ?></td>
                     <td><?=$row['constituency']; ?></td>
-                    <td><?=$row['email']; ?></td>
-                    <td><?=$row['password_digest']; ?></td>
-                    <td><?=$row['yrs_service']; ?></td>
+                    <td class="email"><?=$row['email']; ?></td>
+                    <td class="hash"><?=$row['password_digest']; ?></td>
+                    <td class="yearofser"><?=$row['yrs_service']; ?></td>
                    
                 </tr>
 
             <?php endforeach; ?>
         
     </table>
+    </html>
                     
 
     

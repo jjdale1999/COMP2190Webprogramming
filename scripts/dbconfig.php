@@ -1,5 +1,5 @@
 <?php
-    $host = '127.0.0.1';
+    $host = 'localhost';
     $dbname = 'MPMgmtDB';
     $username = 'comp2190SA';
     $password = '2019Sem1';

@@ -7,8 +7,32 @@ function loadrequest(){
     let yearin = document.getElementById("yearin").value; 
     let pwordin = document.getElementById("pwordin").value;
     let conpwordin = document.getElementById("conpwordin").value;
+   
+    function styleblack(idname){
+        document.getElementById(idname).style.color="black";
+    }
+    function stylered(idname){
+        document.getElementById(idname).style.color="red";
+    }
+    function checkmail(email){
+        var test=email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+       return (test) ? true : false;
+    }
     
-    if(fnamein!="" && lnamein!=""  && constiin!="" && emailin!=""  && yearin!="" && pwordin!="" && conpwordin!="" && emailin.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) && (pwordin == conpwordin) && (yearin>=0 && yearin<=50))
+    
+     for(i=0;i<document.getElementsByTagName("input").length-2;i++){
+        var idname = document.getElementsByTagName("label")[i].id;
+    
+      var y=  document.getElementsByTagName("input")[i].value;
+        if(y==""){
+            stylered(idname);
+        }else{
+            styleblack(idname);
+        }
+    
+    }
+    
+    if(fnamein!="" && lnamein!=""  && constiin!="" && emailin!=""  && yearin!="" && pwordin!="" && conpwordin!="" && checkmail(emailin)==true && (pwordin == conpwordin) && (yearin>=0 && yearin<=50))
     {
         
         document.getElementById("fname").style.color="black";
@@ -30,12 +54,12 @@ function loadrequest(){
         if(!(yearin>=0 && yearin<=50)){
             alert("Year has to a number between 0 and 50");
         }
-        if(!emailin.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) || emailin==""){
+        if(checkmail(emailin)==false || emailin==""){
              alert("Incorrect formart for email");
             document.getElementById("email").style.color="red";
         }
     else{
-                document.getElementById("email").style.color="black";
+               styleblack("email");
             }
              
         if(!/^[\d]/.test(yearin)){
@@ -44,37 +68,9 @@ function loadrequest(){
         }else{
             document.getElementById("year").style.color="black";
         }
-         if(fnamein==""){
-            document.getElementById("fname").style.color="red";
-           
-           }else{
-               document.getElementById("fname").style.color="black";
-           }
-             if(lnamein==""){
-                    document.getElementById("lname").style.color="red";
-            }else{
-                 document.getElementById("lname").style.color="black";
-            }
-             if(constiin==""){
-                    document.getElementById("consti").style.color="red";
-            }else{
-                 document.getElementById("consti").style.color="black";
-            }
-             if(document.getElementById("yearin").value==""){
-                    document.getElementById("year").style.color="red";
-            }else{
-                document.getElementById("year").style.color="black";
-            }
-             if(document.getElementById("pwordin").value==""){
-                    document.getElementById("password").style.color="red";
-            }else{
-                 document.getElementById("password").style.color="black";
-            }
-           if(document.getElementById("conpwordin").value==""){
-                    document.getElementById("conpword").style.color="red";
-            }else{
-                 document.getElementById("conpword").style.color="black";
-            }
+        
+         var i;
+   
 
     }
      

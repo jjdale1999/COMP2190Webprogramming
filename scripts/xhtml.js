@@ -24,9 +24,41 @@ function loadrequest(){
     }
     
     var i;
-     for(i=0;i<document.getElementsByTagName("input").length-2;i++){
-        var idname = document.getElementsByTagName("label")[i].id;
     
+    
+    if(checkpassword(pwordin,conpwordin)==false)  {
+            stylered("password");
+            stylered("conpword");
+            
+             alert("Password does not match");
+        }else{
+            styleblack("password");
+            styleblack("conpword");
+        }
+     if(!(yearin>=0 && yearin<=50)){
+            alert("Year has to a number between 0 and 50");
+            stylered("year");
+        }else{
+            styleblack("year");
+        }
+        if(checkmail(emailin)==false || emailin==""){
+             alert("Incorrect formart for email");
+            stylered("email");
+        }
+    else{
+               styleblack("email");
+            }
+             
+        if(!/^[\d]/.test(yearin)){
+            stylered("year");
+
+        }else{
+            styleblack("year");
+        }
+     for(i=0;i<document.getElementsByClassName("inputs").length;i++){
+         
+        var idname = document.getElementsByTagName("label")[i].id;
+    console.log(idname);
       var y=  document.getElementsByTagName("input")[i].value;
         if(y==""){
             stylered(idname);
@@ -48,42 +80,6 @@ function loadrequest(){
     }
     
   
-    
-    else{
-        if(checkpassword(pwordin,conpwordin)==false)  {
-            stylered("password");
-            stylered("conpword");
-            
-             alert("Password does not match");
-        }else{
-            styleblack("password");
-            styleblack("conpword");
-        }
-        
-        if(!(yearin>=0 && yearin<=50)){
-            alert("Year has to a number between 0 and 50");
-            stylered("year");
-        }else{
-            styleblack("year");
-        }
-        if(checkmail(emailin)==false || emailin==""){
-             alert("Incorrect formart for email");
-            stylered("email");
-        }
-    else{
-               styleblack("email");
-            }
-             
-        if(!/^[\d]/.test(yearin)){
-            stylered("year");
-
-        }else{
-            styleblack("year");
-        }
-        
-         
    
-
-    }
      
 }
